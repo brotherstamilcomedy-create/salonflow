@@ -80,10 +80,12 @@ if (cancelButton) {
 }
 // Queue countdown simulation
 // Queue countdown simulation
+// Queue countdown with turn notification
 let currentPeopleAhead = 3;
 
 const peopleAheadElement = document.getElementById("peopleAhead");
 const waitTimeElement = document.getElementById("waitTime");
+const turnNotification = document.getElementById("turnNotification");
 
 if (peopleAheadElement && waitTimeElement && savedBooking) {
 
@@ -99,6 +101,16 @@ if (peopleAheadElement && waitTimeElement && savedBooking) {
             peopleAheadElement.textContent = currentPeopleAhead;
             waitTimeElement.textContent =
                 (currentPeopleAhead * 10) + " minutes";
+
+            if (currentPeopleAhead === 1 && turnNotification) {
+                turnNotification.textContent =
+                    "🔔 Your turn is near! Please get ready.";
+            }
+
+            if (currentPeopleAhead === 0 && turnNotification) {
+                turnNotification.textContent =
+                    "🎉 It's your turn! Please visit the salon.";
+            }
         }
 
     }, 60000);
