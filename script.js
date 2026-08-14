@@ -1,14 +1,3 @@
-const bookingButton = document.querySelector(".primary");
-
-if (bookingButton) {
-    bookingButton.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        window.location.href = "booking.html";
-    });
-}
-
-
 const confirmButton = document.getElementById("confirmBooking");
 
 if (confirmButton) {
@@ -25,10 +14,10 @@ if (confirmButton) {
         }
 
         alert(
-            "Appointment confirmed!\\n\\n" +
-            "Salon: " + salon + "\\n" +
-            "Service: " + service + "\\n" +
-            "Date: " + date + "\\n" +
+            "Appointment Confirmed! 🎉\n\n" +
+            "Salon: " + salon + "\n" +
+            "Service: " + service + "\n" +
+            "Date: " + date + "\n" +
             "Time: " + time
         );
     });
