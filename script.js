@@ -185,18 +185,34 @@ updateBookingSummary();
 const datePicker = document.getElementById("date");
 
 if (datePicker) {
-    const today = new Date();
 
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
+    function getToday() {
+        const today = new Date();
 
-    const todayString = year + "-" + month + "-" + day;
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const day = String(today.getDate()).padStart(2, "0");
 
+        return year + "-" + month + "-" + day;
+    }
+
+    const todayString = getToday();
+
+    // Prevent selecting past dates
     datePicker.min = todayString;
 
-    // Automatically select today's date
+    // Set today as the default date
     datePicker.value = todayString;
+
+    // Extra validation
+    datePicker.addEventListener("change", function () {
+
+        if (datePicker.value < todayString) {
+            alert("⚠️ Please select today or a future date.");
+            datePicker.value = todayString;
+        }
+
+    });
 }
 const copyBookingButton = document.getElementById("copyBookingId");
 
