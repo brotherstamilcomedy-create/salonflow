@@ -262,3 +262,8 @@ footer {
 #confirmBooking:active {
     transform: translateY(0);
 }
+.booking-price {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 12px 0;
+}
