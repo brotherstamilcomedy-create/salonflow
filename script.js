@@ -61,13 +61,14 @@ if (savedBooking) {
     const appointmentDetails =
         document.getElementById("appointmentDetails");
 
-    if (appointmentDetails) {
-        appointmentDetails.innerHTML =
-            "Salon: " + booking.salon + "<br>" +
-            "Service: " + booking.service + "<br>" +
-            "Date: " + booking.date + "<br>" +
-            "Time: " + booking.time;
-    }
+   if (appointmentDetails) {
+    appointmentDetails.innerHTML =
+        "🆔 Booking ID: " + booking.bookingId + "<br>" +
+        "🏪 Salon: " + booking.salon + "<br>" +
+        "✂️ Service: " + booking.service + "<br>" +
+        "📅 Date: " + booking.date + "<br>" +
+        "🕐 Time: " + booking.time;
+}
 if (queueStatus) {
     queueStatus.style.display = "block";
 
