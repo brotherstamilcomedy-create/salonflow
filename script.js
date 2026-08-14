@@ -23,8 +23,13 @@ if (existingBooking) {
         previousBooking.time === time
     ) {
         alert(
-            "⚠️ You already have an appointment at this salon, date and time."
-        );
+    "⚠️ Booking Slot Already Used\n\n" +
+    "You already have an appointment at:\n\n" +
+    "🏪 Salon: " + salon + "\n" +
+    "📅 Date: " + date + "\n" +
+    "🕐 Time: " + time + "\n\n" +
+    "Please choose a different time."
+);
         return;
     }
 }
