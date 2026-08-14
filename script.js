@@ -82,7 +82,7 @@ if (savedBooking) {
 
   if (appointmentDetails) {
     appointmentDetails.innerHTML =
-        "🆔 Booking ID: " + booking.bookingId + "<br>" +
+      "<strong>🆔 Booking ID: " + booking.bookingId + "</strong><br>" +
         "🏪 Salon: " + booking.salon + "<br>" +
         "✂️ Service: " + booking.service + "<br>" +
         "💰 Price: ₹" + (booking.price || "N/A") + "<br>" +
