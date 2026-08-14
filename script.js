@@ -32,3 +32,17 @@ alert(
 window.location.href = "index.html";
     });
 }
+const savedBooking = localStorage.getItem("salonBooking");
+
+if (savedBooking) {
+    const booking = JSON.parse(savedBooking);
+    const appointmentDetails = document.getElementById("appointmentDetails");
+
+    if (appointmentDetails) {
+        appointmentDetails.innerHTML =
+            "Salon: " + booking.salon + "<br>" +
+            "Service: " + booking.service + "<br>" +
+            "Date: " + booking.date + "<br>" +
+            "Time: " + booking.time;
+    }
+}
