@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +21,7 @@
         </div>
     </nav>
 
+
     <main>
 
         <section class="hero">
@@ -37,17 +37,103 @@
                 </h1>
 
                 <p>
-                    Manage today's appointments and control the salon queue.
+                    Manage appointments, customers and the salon queue.
                 </p>
 
-                <div class="card" style="max-width: 750px; margin: 40px auto; text-align: left;">
 
-                    <h2>📊 Today's Appointments</h2>
+                <!-- DASHBOARD STATS -->
+
+                <div class="dashboard-grid">
+
+                    <div class="card">
+                        <h3>📅 Today's Bookings</h3>
+                        <h2 id="totalBookings">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <h3>⏳ Pending</h3>
+                        <h2 id="pendingBookings">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <h3>✅ Confirmed</h3>
+                        <h2 id="confirmedBookings">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <h3>👥 Customers</h3>
+                        <h2 id="totalCustomers">0</h2>
+                    </div>
+
+                </div>
+
+
+                <!-- APPOINTMENTS -->
+
+                <div class="card"
+                     style="max-width: 900px; margin: 40px auto; text-align: left;">
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        gap:20px;
+                        flex-wrap:wrap;
+                    ">
+
+                        <div>
+                            <h2>📊 Today's Appointments</h2>
+
+                            <p>
+                                View and manage customer bookings.
+                            </p>
+                        </div>
+
+                        <button onclick="loadBookings()">
+                            🔄 Refresh
+                        </button>
+
+                    </div>
+
 
                     <br>
 
+
                     <div id="adminBooking">
-                        <p>No appointment found.</p>
+
+                        <p>No appointments found.</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUEUE CONTROL -->
+
+                <div class="card"
+                     style="max-width: 900px; margin: 40px auto; text-align:left;">
+
+                    <h2>🎟️ Queue Control</h2>
+
+                    <p>
+                        Control the current salon queue.
+                    </p>
+
+                    <br>
+
+                    <div id="queueStatus">
+
+                        <h3>
+                            Current Queue: 
+                            <span id="queueNumber">0</span>
+                        </h3>
+
+                        <br>
+
+                        <button onclick="nextCustomer()">
+                            ➡️ Next Customer
+                        </button>
+
                     </div>
 
                 </div>
@@ -58,12 +144,13 @@
 
     </main>
 
+
     <footer>
         © 2026 SalonFlow. Admin Dashboard.
     </footer>
+
 
     <script src="admin.js"></script>
 
 </body>
 </html>
-```
