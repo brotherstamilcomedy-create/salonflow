@@ -75,11 +75,12 @@ if (savedBooking) {
     const appointmentDetails =
         document.getElementById("appointmentDetails");
 
-   if (appointmentDetails) {
+  if (appointmentDetails) {
     appointmentDetails.innerHTML =
         "🆔 Booking ID: " + booking.bookingId + "<br>" +
         "🏪 Salon: " + booking.salon + "<br>" +
         "✂️ Service: " + booking.service + "<br>" +
+        "💰 Price: ₹" + (booking.price || "N/A") + "<br>" +
         "📅 Date: " + booking.date + "<br>" +
         "🕐 Time: " + booking.time;
 }
