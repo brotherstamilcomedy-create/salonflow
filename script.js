@@ -49,10 +49,16 @@ if (savedBooking) {
             "Date: " + booking.date + "<br>" +
             "Time: " + booking.time;
     }
+if (queueStatus) {
+    queueStatus.style.display = "block";
 
-    if (queueStatus) {
-        queueStatus.style.display = "block";
-    }
+    const peopleAhead = 3;
+    const estimatedWait = peopleAhead * 10;
+
+    document.getElementById("peopleAhead").textContent = peopleAhead;
+    document.getElementById("waitTime").textContent =
+        estimatedWait + " minutes";
+}
 
 } else {
 
