@@ -154,10 +154,19 @@ function updateBookingSummary() {
 
     if (!bookingSummary) return;
 
-    const salon = salonInput ? salonInput.value : "";
-    const service = serviceInput ? serviceInput.value : "";
-    const date = dateInput ? dateInput.value : "";
-    const time = timeInput ? timeInput.value : "";
+  const salon = salonInput ? salonInput.value : "";
+const service = serviceInput ? serviceInput.value : "";
+const date = dateInput ? dateInput.value : "";
+const time = timeInput ? timeInput.value : "";
+
+let price = "";
+
+if (serviceInput && serviceInput.selectedIndex > 0) {
+    const selectedOption =
+        serviceInput.options[serviceInput.selectedIndex];
+
+    price = selectedOption.getAttribute("data-price");
+}
 
     if (!salon || !service || !date || !time) {
         bookingSummary.innerHTML =
@@ -165,13 +174,13 @@ function updateBookingSummary() {
             "<p>Please select your salon, service, date and time.</p>";
         return;
     }
-
-    bookingSummary.innerHTML =
-        "<h3>Booking Summary</h3>" +
-        "<p>🏪 Salon: " + salon + "</p>" +
-        "<p>✂️ Service: " + service + "</p>" +
-        "<p>📅 Date: " + date + "</p>" +
-        "<p>🕐 Time: " + time + "</p>";
+bookingSummary.innerHTML =
+    "<h3>Booking Summary</h3>" +
+    "<p>🏪 Salon: " + salon + "</p>" +
+    "<p>✂️ Service: " + service + "</p>" +
+    "<p>💰 Price: ₹" + price + "</p>" +
+    "<p>📅 Date: " + date + "</p>" +
+    "<p>🕐 Time: " + time + "</p>";
 }
 
 if (salonInput) salonInput.addEventListener("change", updateBookingSummary);
