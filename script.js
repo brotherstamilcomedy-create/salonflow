@@ -34,9 +34,13 @@ window.location.href = "index.html";
 }
 const savedBooking = localStorage.getItem("salonBooking");
 
+const queueStatus = document.getElementById("queueStatus");
+
 if (savedBooking) {
     const booking = JSON.parse(savedBooking);
-    const appointmentDetails = document.getElementById("appointmentDetails");
+
+    const appointmentDetails =
+        document.getElementById("appointmentDetails");
 
     if (appointmentDetails) {
         appointmentDetails.innerHTML =
@@ -44,6 +48,16 @@ if (savedBooking) {
             "Service: " + booking.service + "<br>" +
             "Date: " + booking.date + "<br>" +
             "Time: " + booking.time;
+    }
+
+    if (queueStatus) {
+        queueStatus.style.display = "block";
+    }
+
+} else {
+
+    if (queueStatus) {
+        queueStatus.style.display = "none";
     }
 }
 const cancelButton = document.getElementById("cancelAppointment");
