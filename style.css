@@ -237,3 +237,8 @@ footer {
     margin: 7px 0;
     line-height: 1.6;
 }
+.booking-section-title {
+    margin: 20px 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
