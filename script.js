@@ -42,10 +42,11 @@ localStorage.setItem("salonBooking", JSON.stringify(booking));
 
 alert(
     "✅ Appointment Confirmed!\n\n" +
-    "Salon: " + salon + "\n" +
-    "Service: " + service + "\n" +
-    "Date: " + date + "\n" +
-    "Time: " + time
+    "🆔 Booking ID: " + bookingId + "\n" +
+    "🏪 Salon: " + salon + "\n" +
+    "✂️ Service: " + service + "\n" +
+    "📅 Date: " + date + "\n" +
+    "🕐 Time: " + time
 );
 
 window.location.href = "index.html";
