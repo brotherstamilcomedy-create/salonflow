@@ -12,13 +12,23 @@ if (confirmButton) {
             alert("Please select salon, service, date and time.");
             return;
         }
+const booking = {
+    salon: salon,
+    service: service,
+    date: date,
+    time: time
+};
 
-        alert(
-            "Appointment Confirmed! 🎉\n\n" +
-            "Salon: " + salon + "\n" +
-            "Service: " + service + "\n" +
-            "Date: " + date + "\n" +
-            "Time: " + time
-        );
+localStorage.setItem("salonBooking", JSON.stringify(booking));
+
+alert(
+    "✅ Appointment Confirmed!\n\n" +
+    "Salon: " + salon + "\n" +
+    "Service: " + service + "\n" +
+    "Date: " + date + "\n" +
+    "Time: " + time
+);
+
+window.location.href = "index.html";
     });
 }
