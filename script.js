@@ -261,6 +261,10 @@ if (copyBookingButton) {
 
         navigator.clipboard.writeText(booking.bookingId);
 
-        alert("✅ Booking ID copied!");
+      alert(
+    "✅ Booking ID copied!\n\n" +
+    "Your Booking ID is:\n" +
+    booking.bookingId
+);
     });
 }
