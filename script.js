@@ -71,14 +71,14 @@ const savedBooking = localStorage.getItem("salonBooking");
 
 const queueStatus = document.getElementById("queueStatus");
 const bookingStatus = document.getElementById("bookingStatus");
+const appointmentDetails = document.getElementById("appointmentDetails");
 if (savedBooking) {
     if (bookingStatus) {
     bookingStatus.style.display = "block";
 }
     const booking = JSON.parse(savedBooking);
 
-    const appointmentDetails =
-        document.getElementById("appointmentDetails");
+    
 
   if (appointmentDetails) {
     appointmentDetails.innerHTML =
@@ -110,8 +110,7 @@ if (queueStatus) {
         bookingStatus.style.display = "none";
     }
 
-    const appointmentDetails =
-        document.getElementById("appointmentDetails");
+   
 
     if (appointmentDetails) {
         appointmentDetails.innerHTML =
