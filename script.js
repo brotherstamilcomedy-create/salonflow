@@ -115,3 +115,40 @@ if (peopleAheadElement && waitTimeElement && savedBooking) {
 
     }, 60000);
 }
+// Booking summary
+const salonInput = document.getElementById("salon");
+const serviceInput = document.getElementById("service");
+const dateInput = document.getElementById("date");
+const timeInput = document.getElementById("time");
+const bookingSummary = document.getElementById("bookingSummary");
+
+function updateBookingSummary() {
+
+    if (!bookingSummary) return;
+
+    const salon = salonInput ? salonInput.value : "";
+    const service = serviceInput ? serviceInput.value : "";
+    const date = dateInput ? dateInput.value : "";
+    const time = timeInput ? timeInput.value : "";
+
+    if (!salon || !service || !date || !time) {
+        bookingSummary.innerHTML =
+            "<h3>Booking Summary</h3>" +
+            "<p>Please select your salon, service, date and time.</p>";
+        return;
+    }
+
+    bookingSummary.innerHTML =
+        "<h3>Booking Summary</h3>" +
+        "<p>🏪 Salon: " + salon + "</p>" +
+        "<p>✂️ Service: " + service + "</p>" +
+        "<p>📅 Date: " + date + "</p>" +
+        "<p>🕐 Time: " + time + "</p>";
+}
+
+if (salonInput) salonInput.addEventListener("change", updateBookingSummary);
+if (serviceInput) serviceInput.addEventListener("change", updateBookingSummary);
+if (dateInput) dateInput.addEventListener("change", updateBookingSummary);
+if (timeInput) timeInput.addEventListener("change", updateBookingSummary);
+
+updateBookingSummary();
