@@ -12,6 +12,22 @@ if (confirmButton) {
             alert("Please select salon, service, date and time.");
             return;
         }
+        const existingBooking = localStorage.getItem("salonBooking");
+
+if (existingBooking) {
+    const previousBooking = JSON.parse(existingBooking);
+
+    if (
+        previousBooking.salon === salon &&
+        previousBooking.date === date &&
+        previousBooking.time === time
+    ) {
+        alert(
+            "⚠️ You already have an appointment at this salon, date and time."
+        );
+        return;
+    }
+}
 const booking = {
     salon: salon,
     service: service,
