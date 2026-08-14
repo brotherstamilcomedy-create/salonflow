@@ -55,7 +55,7 @@ window.location.href = "index.html";
 const savedBooking = localStorage.getItem("salonBooking");
 
 const queueStatus = document.getElementById("queueStatus");
-
+const bookingStatus = document.getElementById("bookingStatus");
 if (savedBooking) {
     if (bookingStatus) {
     bookingStatus.style.display = "block";
@@ -183,10 +183,10 @@ updateBookingSummary();
 // Prevent past booking dates
 
 // Prevent past booking dates
+// Prevent past booking dates
 const datePicker = document.getElementById("date");
 
 if (datePicker) {
-
     const today = new Date();
 
     const year = today.getFullYear();
@@ -195,20 +195,14 @@ if (datePicker) {
 
     const todayString = year + "-" + month + "-" + day;
 
-    // Prevent dates before today
     datePicker.min = todayString;
-
-    // Start with today's date
     datePicker.value = todayString;
 
-    // Extra protection
     datePicker.addEventListener("change", function () {
-
         if (datePicker.value < todayString) {
             alert("⚠️ Please select today or a future date.");
             datePicker.value = todayString;
         }
-
     });
 }
 const copyBookingButton = document.getElementById("copyBookingId");
@@ -218,8 +212,7 @@ if (copyBookingButton) {
 
         const savedBooking = localStorage.getItem("salonBooking");
         
-const queueStatus = document.getElementById("queueStatus");
-const bookingStatus = document.getElementById("bookingStatus");
+
         if (!savedBooking) {
             alert("No booking found.");
             return;
