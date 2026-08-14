@@ -186,3 +186,27 @@ if (datePicker) {
 
     datePicker.min = todayString;
 }
+const copyBookingButton = document.getElementById("copyBookingId");
+
+if (copyBookingButton) {
+    copyBookingButton.addEventListener("click", function () {
+
+        const savedBooking = localStorage.getItem("salonBooking");
+
+        if (!savedBooking) {
+            alert("No booking found.");
+            return;
+        }
+
+        const booking = JSON.parse(savedBooking);
+
+        if (!booking.bookingId) {
+            alert("Booking ID not found.");
+            return;
+        }
+
+        navigator.clipboard.writeText(booking.bookingId);
+
+        alert("✅ Booking ID copied!");
+    });
+}
