@@ -182,29 +182,26 @@ if (timeInput) timeInput.addEventListener("change", updateBookingSummary);
 updateBookingSummary();
 // Prevent past booking dates
 
+// Prevent past booking dates
 const datePicker = document.getElementById("date");
 
 if (datePicker) {
 
-    function getToday() {
-        const today = new Date();
+    const today = new Date();
 
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, "0");
-        const day = String(today.getDate()).padStart(2, "0");
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
 
-        return year + "-" + month + "-" + day;
-    }
+    const todayString = year + "-" + month + "-" + day;
 
-    const todayString = getToday();
-
-    // Prevent selecting past dates
+    // Prevent dates before today
     datePicker.min = todayString;
 
-    // Set today as the default date
+    // Start with today's date
     datePicker.value = todayString;
 
-    // Extra validation
+    // Extra protection
     datePicker.addEventListener("change", function () {
 
         if (datePicker.value < todayString) {
