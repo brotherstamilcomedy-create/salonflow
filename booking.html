@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Appointment — SalonFlow</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            Salon<span>Flow</span>
+        </div>
+
+        <div>
+            <a href="index.html">Home</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                📅 SalonFlow Booking
+            </div>
+
+            <h1>
+                Book Your <span>Appointment</span>
+            </h1>
+
+            <p>
+                Choose your salon, service and preferred time.
+                We'll help you avoid unnecessary waiting.
+            </p>
+
+            <div class="card" style="max-width: 550px; margin: 40px auto; text-align: left;">
+
+                <h2>Appointment Details</h2>
+
+                <br>
+
+                <label for="salon">Select Salon</label>
+
+                <select id="salon" style="width:100%; padding:14px; margin:10px 0 20px; border-radius:8px;">
+                    <option value="">Choose a salon</option>
+                    <option>SalonFlow Central</option>
+                    <option>Style Studio</option>
+                    <option>Elite Hair Lounge</option>
+                </select>
+
+
+                <label for="service">Select Service</label>
+
+                <select id="service" style="width:100%; padding:14px; margin:10px 0 20px; border-radius:8px;">
+                    <option value="">Choose a service</option>
+                    <option>Haircut</option>
+                    <option>Haircut + Styling</option>
+                    <option>Hair Wash</option>
+                    <option>Beard Trim</option>
+                    <option>Hair + Beard</option>
+                </select>
+
+
+                <label for="date">Select Date</label>
+
+                <input
+                    type="date"
+                    id="date"
+                    style="width:100%; padding:14px; margin:10px 0 20px; border-radius:8px;"
+                >
+
+
+                <label for="time">Select Time</label>
+
+                <select id="time" style="width:100%; padding:14px; margin:10px 0 20px; border-radius:8px;">
+                    <option value="">Choose a time</option>
+                    <option>10:00 AM</option>
+                    <option>11:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>2:00 PM</option>
+                    <option>3:00 PM</option>
+                    <option>4:00 PM</option>
+                    <option>5:00 PM</option>
+                    <option>6:00 PM</option>
+                </select>
+
+
+                <button
+                    id="confirmBooking"
+                    class="btn primary"
+                    style="border:none; cursor:pointer;"
+                >
+                    Confirm Appointment
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 SalonFlow. Smart Salon Booking & Queue Management.
+    </footer>
+
+</body>
+</html>
