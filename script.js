@@ -28,6 +28,15 @@ if (existingBooking) {
         return;
     }
 }
+const serviceSelect = document.getElementById("service");
+
+let price = "";
+
+if (serviceSelect && serviceSelect.selectedIndex > 0) {
+    price = serviceSelect.options[serviceSelect.selectedIndex]
+        .getAttribute("data-price");
+}
+
 const bookingId =
     "SF-" + Math.floor(100000 + Math.random() * 900000);
 
@@ -35,6 +44,7 @@ const booking = {
     bookingId: bookingId,
     salon: salon,
     service: service,
+    price: price,
     date: date,
     time: time
 };
@@ -45,10 +55,10 @@ alert(
     "🆔 Booking ID: " + bookingId + "\n" +
     "🏪 Salon: " + salon + "\n" +
     "✂️ Service: " + service + "\n" +
+    "💰 Price: ₹" + price + "\n" +
     "📅 Date: " + date + "\n" +
     "🕐 Time: " + time
 );
-
 window.location.href = "index.html";
     });
 }
