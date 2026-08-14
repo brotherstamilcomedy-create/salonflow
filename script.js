@@ -28,13 +28,16 @@ if (existingBooking) {
         return;
     }
 }
+const bookingId =
+    "SF-" + Math.floor(100000 + Math.random() * 900000);
+
 const booking = {
+    bookingId: bookingId,
     salon: salon,
     service: service,
     date: date,
     time: time
 };
-
 localStorage.setItem("salonBooking", JSON.stringify(booking));
 
 alert(
