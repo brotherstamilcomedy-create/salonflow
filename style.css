@@ -162,3 +162,28 @@ footer {
         padding: 60px 5%;
     }
 }
+.appointment-status {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    border-radius: 16px;
+    background: #f5f5f5;
+}
+
+.appointment-status h2 {
+    margin-bottom: 15px;
+}
+
+#appointmentDetails {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+#cancelAppointment {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
