@@ -79,6 +79,7 @@ if (cancelButton) {
     });
 }
 // Queue countdown simulation
+// Queue countdown simulation
 let currentPeopleAhead = 3;
 
 const peopleAheadElement = document.getElementById("peopleAhead");
