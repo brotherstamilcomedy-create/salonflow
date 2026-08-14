@@ -152,3 +152,16 @@ if (dateInput) dateInput.addEventListener("change", updateBookingSummary);
 if (timeInput) timeInput.addEventListener("change", updateBookingSummary);
 
 updateBookingSummary();
+// Prevent past booking dates
+const datePicker = document.getElementById("date");
+
+if (datePicker) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    const todayString = year + "-" + month + "-" + day;
+
+    datePicker.min = todayString;
+}
