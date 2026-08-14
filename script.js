@@ -104,6 +104,15 @@ if (queueStatus) {
     if (bookingStatus) {
         bookingStatus.style.display = "none";
     }
+
+    const appointmentDetails =
+        document.getElementById("appointmentDetails");
+
+    if (appointmentDetails) {
+        appointmentDetails.innerHTML =
+            "📭 You don't have an active appointment.<br>" +
+            "Book an appointment to see your queue status.";
+    }
 }
 const cancelButton = document.getElementById("cancelAppointment");
 
