@@ -46,3 +46,15 @@ if (savedBooking) {
             "Time: " + booking.time;
     }
 }
+const cancelButton = document.getElementById("cancelAppointment");
+
+if (cancelButton) {
+    cancelButton.addEventListener("click", function () {
+
+        localStorage.removeItem("salonBooking");
+
+        alert("Appointment cancelled successfully.");
+
+        window.location.reload();
+    });
+}
