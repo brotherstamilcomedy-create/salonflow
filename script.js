@@ -78,3 +78,27 @@ if (cancelButton) {
         window.location.reload();
     });
 }
+// Queue countdown simulation
+let currentPeopleAhead = 3;
+
+const peopleAheadElement = document.getElementById("peopleAhead");
+const waitTimeElement = document.getElementById("waitTime");
+
+if (peopleAheadElement && waitTimeElement && savedBooking) {
+
+    peopleAheadElement.textContent = currentPeopleAhead;
+    waitTimeElement.textContent =
+        (currentPeopleAhead * 10) + " minutes";
+
+    setInterval(function () {
+
+        if (currentPeopleAhead > 0) {
+            currentPeopleAhead--;
+
+            peopleAheadElement.textContent = currentPeopleAhead;
+            waitTimeElement.textContent =
+                (currentPeopleAhead * 10) + " minutes";
+        }
+
+    }, 60000);
+}
