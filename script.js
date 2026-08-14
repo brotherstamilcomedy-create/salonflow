@@ -189,7 +189,7 @@ bookingSummary.innerHTML =
     "<h3>Booking Summary</h3>" +
     "<p>🏪 Salon: " + salon + "</p>" +
     "<p>✂️ Service: " + service + "</p>" +
-    "<p>💰 Price: ₹" + price + "</p>" +
+    "<p class=\"booking-price\">💰 Total Price: ₹" + price + "</p>" +
     "<p>📅 Date: " + date + "</p>" +
     "<p>🕐 Time: " + time + "</p>";
 }
