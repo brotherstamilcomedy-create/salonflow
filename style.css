@@ -213,3 +213,7 @@ footer {
 .queue-status p {
     margin: 8px 0;
 }
+.turn-notification {
+    margin-top: 15px;
+    font-weight: 600;
+}
