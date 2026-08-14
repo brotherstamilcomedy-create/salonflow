@@ -57,6 +57,9 @@ const savedBooking = localStorage.getItem("salonBooking");
 const queueStatus = document.getElementById("queueStatus");
 
 if (savedBooking) {
+    if (bookingStatus) {
+    bookingStatus.style.display = "block";
+}
     const booking = JSON.parse(savedBooking);
 
     const appointmentDetails =
@@ -85,6 +88,10 @@ if (queueStatus) {
 
     if (queueStatus) {
         queueStatus.style.display = "none";
+    }
+
+    if (bookingStatus) {
+        bookingStatus.style.display = "none";
     }
 }
 const cancelButton = document.getElementById("cancelAppointment");
@@ -192,7 +199,9 @@ if (copyBookingButton) {
     copyBookingButton.addEventListener("click", function () {
 
         const savedBooking = localStorage.getItem("salonBooking");
-
+        
+const queueStatus = document.getElementById("queueStatus");
+const bookingStatus = document.getElementById("bookingStatus");
         if (!savedBooking) {
             alert("No booking found.");
             return;
