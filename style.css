@@ -242,3 +242,23 @@ footer {
     font-size: 18px;
     font-weight: 600;
 }
+#confirmBooking {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+#confirmBooking:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+#confirmBooking:active {
+    transform: translateY(0);
+}
