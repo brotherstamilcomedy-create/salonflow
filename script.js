@@ -1,65 +1,98 @@
 
-// ================================
+// ========================================
 // SalonFlow Customer Website
-// ================================
+// ========================================
 
 
-// =================================
+// ========================================
 // CONFIRM BOOKING
-// =================================
+// ========================================
 
-const confirmButton = document.getElementById("confirmBooking");
+const confirmButton =
+    document.getElementById("confirmBooking");
 
 if (confirmButton) {
 
     confirmButton.addEventListener("click", function () {
 
-        const salon = document.getElementById("salon").value;
-        const service = document.getElementById("service").value;
-        const date = document.getElementById("date").value;
-        const time = document.getElementById("time").value;
+        const salon =
+            document.getElementById("salon").value;
 
-        // Validate booking details
+        const service =
+            document.getElementById("service").value;
+
+        const date =
+            document.getElementById("date").value;
+
+        const time =
+            document.getElementById("time").value;
+
+
+        // Validate
         if (!salon || !service || !date || !time) {
-            alert("Please select salon, service, date and time.");
+
+            alert(
+                "Please select salon, service, date and time."
+            );
+
             return;
         }
 
 
-        // Check existing booking
-        const existingBooking =
-            localStorage.getItem("salonBooking");
+        // ========================================
+        // GET EXISTING BOOKINGS
+        // ========================================
 
-        if (existingBooking) {
+        let bookings =
+            JSON.parse(
+                localStorage.getItem("salonBookings")
+            ) || [];
 
-            const previousBooking =
-                JSON.parse(existingBooking);
 
-            if (
-                previousBooking.salon === salon &&
-                previousBooking.date === date &&
-                previousBooking.time === time
-            ) {
+        // ========================================
+        // CHECK SLOT
+        // ========================================
 
-                alert(
-                    "⚠️ Booking Slot Already Used\n\n" +
-                    "You already have an appointment at:\n\n" +
-                    "🏪 Salon: " + salon + "\n" +
-                    "📅 Date: " + date + "\n" +
-                    "🕐 Time: " + time + "\n\n" +
-                    "Please choose a different time."
+        const slotUsed =
+            bookings.some(function (booking) {
+
+                return (
+                    booking.salon === salon &&
+                    booking.date === date &&
+                    booking.time === time &&
+                    booking.status !== "Cancelled"
                 );
 
-                return;
-            }
+            });
+
+
+        if (slotUsed) {
+
+            alert(
+                "⚠️ Booking Slot Already Used\n\n" +
+
+                "🏪 Salon: " + salon + "\n" +
+
+                "📅 Date: " + date + "\n" +
+
+                "🕐 Time: " + time + "\n\n" +
+
+                "Please choose a different time."
+            );
+
+            return;
         }
 
 
-        // Get service price
+        // ========================================
+        // GET PRICE
+        // ========================================
+
         const serviceSelect =
             document.getElementById("service");
 
         let price = "";
+
 
         if (
             serviceSelect &&
@@ -70,10 +103,14 @@ if (confirmButton) {
                 serviceSelect.options[
                     serviceSelect.selectedIndex
                 ].getAttribute("data-price");
+
         }
 
 
-        // Generate booking ID
+        // ========================================
+        // CREATE BOOKING ID
+        // ========================================
+
         const bookingId =
             "SF-" +
             Math.floor(
@@ -82,7 +119,10 @@ if (confirmButton) {
             );
 
 
-        // Create booking
+        // ========================================
+        // CREATE BOOKING
+        // ========================================
+
         const booking = {
 
             bookingId: bookingId,
@@ -97,23 +137,44 @@ if (confirmButton) {
 
             time: time,
 
-            // NEW: Admin status
             status: "Pending",
 
-            // NEW: Booking creation time
-            createdAt: new Date().toISOString()
+            createdAt:
+                new Date().toISOString()
+
         };
 
 
-        // Save booking
+        // ========================================
+        // ADD BOOKING
+        // ========================================
+
+        bookings.push(booking);
+
+
+        // Save all bookings
+
         localStorage.setItem(
-            "salonBooking",
-            JSON.stringify(booking)
+            "salonBookings",
+            JSON.stringify(bookings)
         );
 
 
-        // Confirmation message
+        // ========================================
+        // REMOVE OLD SINGLE BOOKING
+        // ========================================
+
+        localStorage.removeItem(
+            "salonBooking"
+        );
+
+
+        // ========================================
+        // CONFIRMATION
+        // ========================================
+
         alert(
+
             "✅ Appointment Confirmed!\n\n" +
 
             "🆔 Booking ID: " +
@@ -133,23 +194,34 @@ if (confirmButton) {
 
             "\n🕐 Time: " +
             time
+
         );
 
 
-        // Go back to customer home
-        window.location.href = "index.html";
+        window.location.href =
+            "index.html";
 
     });
+
 }
 
 
 
-// =================================
-// DISPLAY SAVED BOOKING
-// =================================
+// ========================================
+// CUSTOMER ACTIVE BOOKING
+// ========================================
 
-const savedBooking =
-    localStorage.getItem("salonBooking");
+let allBookings =
+    JSON.parse(
+        localStorage.getItem("salonBookings")
+    ) || [];
+
+
+let savedBooking =
+    allBookings.length > 0
+        ? allBookings[allBookings.length - 1]
+        : null;
+
 
 const queueStatus =
     document.getElementById("queueStatus");
@@ -161,52 +233,57 @@ const appointmentDetails =
     document.getElementById("appointmentDetails");
 
 
+// ========================================
+// DISPLAY LATEST BOOKING
+// ========================================
+
 if (savedBooking) {
 
-    const booking =
-        JSON.parse(savedBooking);
-
-
-    // Show booking status
     if (bookingStatus) {
-        bookingStatus.style.display = "block";
+
+        bookingStatus.style.display =
+            "block";
+
     }
 
 
-    // Display appointment details
     if (appointmentDetails) {
 
         appointmentDetails.innerHTML =
 
             "<strong>🆔 Booking ID: " +
-            booking.bookingId +
+            savedBooking.bookingId +
             "</strong><br>" +
 
             "🏪 Salon: " +
-            booking.salon +
+            savedBooking.salon +
             "<br>" +
 
             "✂️ Service: " +
-            booking.service +
+            savedBooking.service +
             "<br>" +
 
             "💰 Price: ₹" +
-            (booking.price || "N/A") +
+            (savedBooking.price || "N/A") +
             "<br>" +
 
             "📅 Date: " +
-            booking.date +
+            savedBooking.date +
             "<br>" +
 
             "🕐 Time: " +
-            booking.time;
+            savedBooking.time;
+
     }
 
 
-    // Show queue
+    // Queue
+
     if (queueStatus) {
 
-        queueStatus.style.display = "block";
+        queueStatus.style.display =
+            "block";
+
 
         const peopleAhead = 3;
 
@@ -215,52 +292,76 @@ if (savedBooking) {
 
 
         const peopleAheadElement =
-            document.getElementById("peopleAhead");
+            document.getElementById(
+                "peopleAhead"
+            );
+
 
         const waitTimeElement =
-            document.getElementById("waitTime");
+            document.getElementById(
+                "waitTime"
+            );
 
 
         if (peopleAheadElement) {
+
             peopleAheadElement.textContent =
                 peopleAhead;
+
         }
 
 
         if (waitTimeElement) {
+
             waitTimeElement.textContent =
-                estimatedWait + " minutes";
+                estimatedWait +
+                " minutes";
+
         }
+
     }
 
 
 } else {
 
-    // No booking
     if (queueStatus) {
-        queueStatus.style.display = "none";
+
+        queueStatus.style.display =
+            "none";
+
     }
 
+
     if (bookingStatus) {
-        bookingStatus.style.display = "none";
+
+        bookingStatus.style.display =
+            "none";
+
     }
+
 
     if (appointmentDetails) {
 
         appointmentDetails.innerHTML =
+
             "📭 You don't have an active appointment.<br>" +
+
             "Book an appointment to see your queue status.";
+
     }
+
 }
 
 
 
-// =================================
-// CANCEL APPOINTMENT
-// =================================
+// ========================================
+// CANCEL CUSTOMER BOOKING
+// ========================================
 
 const cancelButton =
-    document.getElementById("cancelAppointment");
+    document.getElementById(
+        "cancelAppointment"
+    );
 
 
 if (cancelButton) {
@@ -269,37 +370,75 @@ if (cancelButton) {
         "click",
         function () {
 
-            localStorage.removeItem(
-                "salonBooking"
+            let bookings =
+                JSON.parse(
+                    localStorage.getItem(
+                        "salonBookings"
+                    )
+                ) || [];
+
+
+            if (bookings.length === 0) {
+
+                alert(
+                    "No booking found."
+                );
+
+                return;
+
+            }
+
+
+            // Cancel latest booking
+
+            bookings[
+                bookings.length - 1
+            ].status = "Cancelled";
+
+
+            localStorage.setItem(
+                "salonBookings",
+                JSON.stringify(bookings)
             );
+
 
             alert(
                 "Appointment cancelled successfully."
             );
 
+
             window.location.reload();
 
         }
     );
+
 }
 
 
 
-// =================================
+// ========================================
 // QUEUE COUNTDOWN
-// =================================
+// ========================================
 
 let currentPeopleAhead = 3;
 
 
 const peopleAheadElement =
-    document.getElementById("peopleAhead");
+    document.getElementById(
+        "peopleAhead"
+    );
+
 
 const waitTimeElement =
-    document.getElementById("waitTime");
+    document.getElementById(
+        "waitTime"
+    );
+
 
 const turnNotification =
-    document.getElementById("turnNotification");
+    document.getElementById(
+        "turnNotification"
+    );
 
 
 if (
@@ -310,6 +449,7 @@ if (
 
     peopleAheadElement.textContent =
         currentPeopleAhead;
+
 
     waitTimeElement.textContent =
         (currentPeopleAhead * 10) +
@@ -332,7 +472,6 @@ if (
                 " minutes";
 
 
-            // Turn is near
             if (
                 currentPeopleAhead === 1 &&
                 turnNotification
@@ -340,10 +479,10 @@ if (
 
                 turnNotification.textContent =
                     "🔔 Your turn is near! Please get ready.";
+
             }
 
 
-            // Turn reached
             if (
                 currentPeopleAhead === 0 &&
                 turnNotification
@@ -351,18 +490,20 @@ if (
 
                 turnNotification.textContent =
                     "🎉 It's your turn! Please visit the salon.";
+
             }
 
         }
 
     }, 60000);
+
 }
 
 
 
-// =================================
+// ========================================
 // BOOKING SUMMARY
-// =================================
+// ========================================
 
 const salonInput =
     document.getElementById("salon");
@@ -409,7 +550,6 @@ function updateBookingSummary() {
         "";
 
 
-    // Get price
     let price = "";
 
 
@@ -428,10 +568,10 @@ function updateBookingSummary() {
             selectedOption.getAttribute(
                 "data-price"
             );
+
     }
 
 
-    // Incomplete booking
     if (
         !salon ||
         !service ||
@@ -444,15 +584,18 @@ function updateBookingSummary() {
             "<h3>Booking Summary</h3>" +
 
             "<p>" +
+
             "Please select your salon, service, " +
+
             "date and time." +
+
             "</p>";
 
         return;
+
     }
 
 
-    // Complete booking
     bookingSummary.innerHTML =
 
         "<h3>Booking Summary</h3>" +
@@ -466,8 +609,11 @@ function updateBookingSummary() {
         "</p>" +
 
         "<p class=\"booking-price\">" +
+
         "💰 Total Price: ₹" +
+
         price +
+
         "</p>" +
 
         "<p>📅 Date: " +
@@ -477,17 +623,17 @@ function updateBookingSummary() {
         "<p>🕐 Time: " +
         time +
         "</p>";
+
 }
 
 
-
-// Summary event listeners
 if (salonInput) {
 
     salonInput.addEventListener(
         "change",
         updateBookingSummary
     );
+
 }
 
 
@@ -497,6 +643,7 @@ if (serviceInput) {
         "change",
         updateBookingSummary
     );
+
 }
 
 
@@ -506,6 +653,7 @@ if (dateInput) {
         "change",
         updateBookingSummary
     );
+
 }
 
 
@@ -515,6 +663,7 @@ if (timeInput) {
         "change",
         updateBookingSummary
     );
+
 }
 
 
@@ -522,9 +671,9 @@ updateBookingSummary();
 
 
 
-// =================================
-// PREVENT PAST BOOKING DATES
-// =================================
+// ========================================
+// PREVENT PAST DATES
+// ========================================
 
 const datePicker =
     document.getElementById("date");
@@ -560,12 +709,10 @@ if (datePicker) {
         day;
 
 
-    // Minimum date = today
     datePicker.min =
         todayString;
 
 
-    // Default date = today
     datePicker.value =
         todayString;
 
@@ -586,20 +733,24 @@ if (datePicker) {
 
                 datePicker.value =
                     todayString;
+
             }
 
         }
     );
+
 }
 
 
 
-// =================================
+// ========================================
 // COPY BOOKING ID
-// =================================
+// ========================================
 
 const copyBookingButton =
-    document.getElementById("copyBookingId");
+    document.getElementById(
+        "copyBookingId"
+    );
 
 
 if (copyBookingButton) {
@@ -608,24 +759,29 @@ if (copyBookingButton) {
         "click",
         function () {
 
-            const savedBooking =
-                localStorage.getItem(
-                    "salonBooking"
-                );
+            const bookings =
+                JSON.parse(
+                    localStorage.getItem(
+                        "salonBookings"
+                    )
+                ) || [];
 
 
-            if (!savedBooking) {
+            if (bookings.length === 0) {
 
                 alert(
                     "No booking found."
                 );
 
                 return;
+
             }
 
 
             const booking =
-                JSON.parse(savedBooking);
+                bookings[
+                    bookings.length - 1
+                ];
 
 
             if (!booking.bookingId) {
@@ -635,6 +791,7 @@ if (copyBookingButton) {
                 );
 
                 return;
+
             }
 
 
@@ -655,4 +812,6 @@ if (copyBookingButton) {
 
         }
     );
+
 }
+
