@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +12,37 @@
 
 <body>
 
+    <!-- ============================= -->
+    <!-- NAVIGATION -->
+    <!-- ============================= -->
+
     <nav>
+
         <div class="logo">
             Salon<span>Flow</span>
         </div>
 
         <div>
-            <a href="index.html">Customer Home</a>
+
+            <a href="index.html">
+                Customer Home
+            </a>
+
+            <button
+                id="logoutButton"
+                style="margin-left:15px;"
+            >
+                🚪 Logout
+            </button>
+
         </div>
+
     </nav>
 
+
+    <!-- ============================= -->
+    <!-- MAIN -->
+    <!-- ============================= -->
 
     <main>
 
@@ -28,68 +50,149 @@
 
             <div class="hero-content">
 
+
+                <!-- ADMIN BADGE -->
+
                 <div class="badge">
                     🏪 SalonFlow Admin
                 </div>
 
+
+                <!-- TITLE -->
+
                 <h1>
                     Salon <span>Dashboard</span>
                 </h1>
+
 
                 <p>
                     Manage appointments, customers and the salon queue.
                 </p>
 
 
-                <!-- DASHBOARD STATS -->
 
-                <div class="dashboard-grid">
+                <!-- ============================= -->
+                <!-- DASHBOARD STATISTICS -->
+                <!-- ============================= -->
+
+                <div
+                    class="dashboard-grid"
+                    style="
+                        max-width:900px;
+                        margin:40px auto;
+                        display:grid;
+                        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+                        gap:20px;
+                    "
+                >
+
+
+                    <!-- TOTAL BOOKINGS -->
 
                     <div class="card">
-                        <h3>📅 Today's Bookings</h3>
-                        <h2 id="totalBookings">0</h2>
+
+                        <h3>
+                            📅 Today's Bookings
+                        </h3>
+
+                        <h2 id="totalBookings">
+                            0
+                        </h2>
+
                     </div>
 
-                    <div class="card">
-                        <h3>⏳ Pending</h3>
-                        <h2 id="pendingBookings">0</h2>
-                    </div>
+
+
+                    <!-- PENDING -->
 
                     <div class="card">
-                        <h3>✅ Confirmed</h3>
-                        <h2 id="confirmedBookings">0</h2>
+
+                        <h3>
+                            ⏳ Pending
+                        </h3>
+
+                        <h2 id="pendingBookings">
+                            0
+                        </h2>
+
                     </div>
 
+
+
+                    <!-- CONFIRMED -->
+
                     <div class="card">
-                        <h3>👥 Customers</h3>
-                        <h2 id="totalCustomers">0</h2>
+
+                        <h3>
+                            ✅ Confirmed
+                        </h3>
+
+                        <h2 id="confirmedBookings">
+                            0
+                        </h2>
+
+                    </div>
+
+
+
+                    <!-- CUSTOMERS -->
+
+                    <div class="card">
+
+                        <h3>
+                            👥 Customers
+                        </h3>
+
+                        <h2 id="totalCustomers">
+                            0
+                        </h2>
+
                     </div>
 
                 </div>
 
 
+
+                <!-- ============================= -->
                 <!-- APPOINTMENTS -->
+                <!-- ============================= -->
 
-                <div class="card"
-                     style="max-width: 900px; margin: 40px auto; text-align: left;">
+                <div
+                    class="card"
+                    style="
+                        max-width:900px;
+                        margin:40px auto;
+                        text-align:left;
+                    "
+                >
 
-                    <div style="
-                        display:flex;
-                        justify-content:space-between;
-                        align-items:center;
-                        gap:20px;
-                        flex-wrap:wrap;
-                    ">
+
+                    <div
+                        style="
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
+                            gap:20px;
+                            flex-wrap:wrap;
+                        "
+                    >
 
                         <div>
-                            <h2>📊 Today's Appointments</h2>
+
+                            <h2>
+                                📊 Today's Appointments
+                            </h2>
 
                             <p>
                                 View and manage customer bookings.
                             </p>
+
                         </div>
 
-                        <button onclick="loadBookings()">
+
+                        <button
+                            onclick="loadBookings()"
+                        >
                             🔄 Refresh
                         </button>
 
@@ -99,21 +202,36 @@
                     <br>
 
 
+                    <!-- BOOKING DISPLAY -->
+
                     <div id="adminBooking">
 
-                        <p>No appointments found.</p>
+                        <p>
+                            📭 No appointments found.
+                        </p>
 
                     </div>
 
                 </div>
 
 
+
+                <!-- ============================= -->
                 <!-- QUEUE CONTROL -->
+                <!-- ============================= -->
 
-                <div class="card"
-                     style="max-width: 900px; margin: 40px auto; text-align:left;">
+                <div
+                    class="card"
+                    style="
+                        max-width:900px;
+                        margin:40px auto;
+                        text-align:left;
+                    "
+                >
 
-                    <h2>🎟️ Queue Control</h2>
+                    <h2>
+                        🎟️ Queue Control
+                    </h2>
 
                     <p>
                         Control the current salon queue.
@@ -121,16 +239,26 @@
 
                     <br>
 
+
                     <div id="queueStatus">
 
                         <h3>
-                            Current Queue: 
-                            <span id="queueNumber">0</span>
+
+                            Current Queue:
+
+                            <span id="queueNumber">
+                                0
+                            </span>
+
                         </h3>
+
 
                         <br>
 
-                        <button onclick="nextCustomer()">
+
+                        <button
+                            onclick="nextCustomer()"
+                        >
                             ➡️ Next Customer
                         </button>
 
@@ -145,18 +273,85 @@
     </main>
 
 
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
     <footer>
+
         © 2026 SalonFlow. Admin Dashboard.
+
     </footer>
 
 
-    <script>
-    if (sessionStorage.getItem("salonAdminLoggedIn") !== "true") {
-        window.location.href = "admin-login.html";
-    }
-</script>
 
-<script src="admin.js"></script>
+    <!-- ============================= -->
+    <!-- LOGIN PROTECTION -->
+    <!-- ============================= -->
+
+    <script>
+
+        // Check admin login
+
+        if (
+            sessionStorage.getItem(
+                "salonAdminLoggedIn"
+            ) !== "true"
+        ) {
+
+            window.location.href =
+                "admin-login.html";
+
+        }
+
+    </script>
+
+
+
+    <!-- ADMIN JAVASCRIPT -->
+
+    <script src="admin.js"></script>
+
+
+
+    <!-- ============================= -->
+    <!-- LOGOUT -->
+    <!-- ============================= -->
+
+    <script>
+
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function () {
+
+                    // Remove login session
+
+                    sessionStorage.removeItem(
+                        "salonAdminLoggedIn"
+                    );
+
+
+                    // Return to login
+
+                    window.location.href =
+                        "admin-login.html";
+
+                }
+            );
+
+        }
+
+    </script>
 
 </body>
 </html>
+```
