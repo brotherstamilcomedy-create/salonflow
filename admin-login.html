@@ -1,0 +1,181 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SalonFlow — Admin Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            Salon<span>Flow</span>
+        </div>
+
+        <div>
+            <a href="index.html">Customer Home</a>
+        </div>
+    </nav>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    🔐 SalonFlow Admin
+                </div>
+
+                <h1>
+                    Admin <span>Login</span>
+                </h1>
+
+                <p>
+                    Login to manage salon appointments.
+                </p>
+
+
+                <div class="card"
+                     style="
+                        max-width:450px;
+                        margin:40px auto;
+                        text-align:left;
+                     ">
+
+                    <h2>🔑 Administrator Login</h2>
+
+                    <br>
+
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminUsername"
+                        placeholder="Enter username"
+                    >
+
+
+                    <br><br>
+
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter password"
+                    >
+
+
+                    <br><br>
+
+
+                    <button
+                        id="adminLoginButton"
+                    >
+                        🔓 Login
+                    </button>
+
+
+                    <p
+                        id="loginMessage"
+                        style="margin-top:20px;"
+                    ></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        © 2026 SalonFlow. Admin Panel.
+    </footer>
+
+
+    <script>
+
+        const loginButton =
+            document.getElementById(
+                "adminLoginButton"
+            );
+
+
+        loginButton.addEventListener(
+            "click",
+            function () {
+
+                const username =
+                    document.getElementById(
+                        "adminUsername"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "adminPassword"
+                    ).value;
+
+
+                const message =
+                    document.getElementById(
+                        "loginMessage"
+                    );
+
+
+                // Demo credentials
+                if (
+                    username === "admin" &&
+                    password === "salon123"
+                ) {
+
+                    sessionStorage.setItem(
+                        "salonAdminLoggedIn",
+                        "true"
+                    );
+
+
+                    message.textContent =
+                        "✅ Login successful!";
+
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "admin.html";
+
+                        },
+                        500
+                    );
+
+                } else {
+
+                    message.textContent =
+                        "❌ Invalid username or password.";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
+```
