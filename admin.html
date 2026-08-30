@@ -150,7 +150,13 @@
     </footer>
 
 
-    <script src="admin.js"></script>
+    <script>
+    if (sessionStorage.getItem("salonAdminLoggedIn") !== "true") {
+        window.location.href = "admin-login.html";
+    }
+</script>
+
+<script src="admin.js"></script>
 
 </body>
 </html>
